@@ -3,6 +3,20 @@
   align-items: center;
   justify-content: space-around;
   display: flex;
-  box-shadow: 0rem -0.2rem 0.5rem var(--box-shadow-color);
+  box-shadow: 0rem -0.2rem 0.5rem var(--box-shadow-black);
   min-height: 3.5rem;
+  padding: 0.5rem 0;
+}
+
+.nav-bar__item {
+  text-align: center;
+  cursor: pointer;
+}
+
+.nav-bar__item-image {
+  width: 2rem;
+}
+
+.selected-item {
+  color: var(--selected-item-color);
 }

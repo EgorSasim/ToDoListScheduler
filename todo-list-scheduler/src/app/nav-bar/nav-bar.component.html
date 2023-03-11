@@ -1,6 +1,60 @@
 <div class="nav-bar">
-  <div class="nav-bar__item">Sidebar menu</div>
-  <div class="nav-bar__item">Tasks</div>
-  <div class="nav-bar__item">Calendar</div>
-  <div class="nav-bar__item">Mine</div>
+  <div class="nav-bar__item" (click)="showMenu()">
+    <div>
+      <img class="nav-bar__item-image" src="{{ menuSrc }}" alt="tasks-image" />
+    </div>
+  </div>
+  <div
+    class="nav-bar__item"
+    (click)="changeSelectedNavBarItem(navBarItems.Tasks)"
+    [routerLink]="'/with-nav-bar/tasks-page'"
+  >
+    <div
+      class="nav-bar__item-name"
+      [class.selected-item]="selectedItem == navBarItems.Tasks"
+    >
+      Tasks
+    </div>
+    <div>
+      <img class="nav-bar__item-image" src="{{ tasksSrc }}" alt="tasks-image" />
+    </div>
+  </div>
+  <div
+    class="nav-bar__item"
+    (click)="changeSelectedNavBarItem(navBarItems.Calendar)"
+    [routerLink]="'/with-nav-bar/calendar-page'"
+  >
+    <div
+      class="nav-bar__item-name"
+      [class.selected-item]="selectedItem == navBarItems.Calendar"
+    >
+      Calendar
+    </div>
+    <div>
+      <img
+        class="nav-bar__item-image"
+        src="{{ calendarSrc }}"
+        alt="calendar-image"
+      />
+    </div>
+  </div>
+  <div
+    class="nav-bar__item"
+    (click)="changeSelectedNavBarItem(navBarItems.Me)"
+    [routerLink]="'/with-nav-bar/profile-page'"
+  >
+    <div
+      class="nav-bar__item-name"
+      [class.selected-item]="selectedItem == navBarItems.Me"
+    >
+      Me
+    </div>
+    <div>
+      <img
+        class="nav-bar__item-image"
+        src="{{ profileSrc }}"
+        alt="profile-image"
+      />
+    </div>
+  </div>
 </div>
