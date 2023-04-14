@@ -1,0 +1,10 @@
+<button
+  [style.width]="width + 'rem'"
+  [style.height]="height + 'rem'"
+  [style.backgroundColor]="backgroundColor"
+  [style.color]="contentColor"
+  class="pulsing-button"
+  (click)="isClicked.emit()"
+>
+  {{ content }}
+</button>
