@@ -1,0 +1,17 @@
+<form class="task">
+  <input
+    type="checkbox"
+    class="task__completed"
+    [checked]="formGroup.get('completed').value"
+  />
+  <div class="task__title" (click)="openDetailedTaskModal(formGroup)">
+    {{ formGroup.get("title").value }}
+  </div>
+  <div class="task__delete">
+    <img
+      src="trashSrc"
+      alt="trash icon"
+      (click)="removeTask(formGroup.get('id').value)"
+    />
+  </div>
+</form>

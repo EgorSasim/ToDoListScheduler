@@ -1,0 +1,25 @@
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem;
+  margin: 0.2rem 0;
+}
+
+.task__completed {
+  border-radius: 50%;
+}
+
+.task__title {
+  cursor: pointer;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.task__delete {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}

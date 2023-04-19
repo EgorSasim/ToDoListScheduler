@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { FormArray, FormGroup } from '@angular/forms';
+import { TaskForm } from 'src/app/tasks/task/task.typings';
 
 @Component({
   selector: 'app-tasks-list',
@@ -6,4 +8,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./tasks-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TasksListComponent {}
+export class TasksListComponent {
+  @Input() public formArray: FormArray<FormGroup<TaskForm>> = new FormArray([]);
+}

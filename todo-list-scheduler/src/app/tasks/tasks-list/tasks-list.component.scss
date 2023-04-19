@@ -1,0 +1,6 @@
+.tasks-list__task {
+  border-top: 1px solid var(--task-border-color);
+  &:last-child {
+    border-bottom: 1px solid var(--task-border-color);
+  }
+}
