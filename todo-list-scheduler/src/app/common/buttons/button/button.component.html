@@ -1,0 +1,13 @@
+<button
+  class="button"
+  [style.width]="width + 'rem'"
+  [style.height]="height + 'rem'"
+  [style.fontSize]="fontSize + 'rem'"
+  [style.color]="contentColor"
+  [style.backgroundColor]="bgColor"
+  [style.borderRadius]="borderRadius + 'rem'"
+  [class.is-disabled]="disabled"
+  (click)="isClicked.emit()"
+>
+  {{ content }}
+</button>

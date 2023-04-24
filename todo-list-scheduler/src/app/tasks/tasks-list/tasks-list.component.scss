@@ -1,3 +1,10 @@
+.tasks-list__header {
+  text-align: center;
+  padding: 3.2rem 0;
+  font-size: 3rem;
+  color: var(--main-font-color);
+}
+
 .tasks-list__task {
   border-top: 1px solid var(--task-border-color);
   &:last-child {

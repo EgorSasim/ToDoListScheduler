@@ -10,3 +10,14 @@
   [contentSize]="2"
   (isClicked)="openAddTaskModal()"
 ></app-pulsing-button>
+
+<ng-container *ngIf="isOpenedAddTaskModal | async">
+  <div
+    class="tasks-page__add-task-page-background"
+    (click)="closeAddTaskModal()"
+  ></div>
+  <app-add-task-form
+    class="tasks-page__add-task-page"
+    (closeModal)="closeAddTaskModal()"
+  ></app-add-task-form>
+</ng-container>

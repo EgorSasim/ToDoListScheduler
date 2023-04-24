@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { TaskForm } from 'src/app/tasks/task/task.typings';
 
@@ -8,6 +14,18 @@ import { TaskForm } from 'src/app/tasks/task/task.typings';
   styleUrls: ['./tasks-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TasksListComponent {
+export class TasksListComponent implements OnInit {
   @Input() public formArray: FormArray<FormGroup<TaskForm>> = new FormArray([]);
+
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+  public ngOnInit(): void {
+    this.handleFormArrayChanges();
+  }
+
+  private handleFormArrayChanges(): void {
+    this.formArray.valueChanges.subscribe(() => {
+      console.log('mark for check');
+      this.changeDetectorRef.markForCheck();
+    });
+  }
 }

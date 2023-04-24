@@ -4,6 +4,6 @@ export interface TaskForm {
   id: FormControl<number>;
   completed: FormControl<boolean>;
   title: FormControl<string>;
-  text: FormControl<string>;
+  description: FormControl<string>;
   date: FormControl<Date>;
 }

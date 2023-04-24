@@ -1,0 +1,21 @@
+.button {
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+
+  box-shadow: 0.2rem 0.2rem var(--box-shadow-color);
+
+  transition: 0.3s;
+  &:hover {
+    filter: brightness(120%);
+  }
+
+  &:active {
+    box-shadow: none;
+  }
+}
+
+.is-disabled {
+  filter: brightness(60%);
+  pointer-events: none;
+}

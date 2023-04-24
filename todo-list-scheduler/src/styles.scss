@@ -4,18 +4,28 @@
 
 :root {
   --page-bg-color: white;
-  --selected-item-color: rgb(0, 140, 255);
   --control-color: white;
+  --selected-item-color: rgb(0, 140, 255);
   --control-bg-color: rgb(0, 140, 255);
+  --main-font-color: rgb(0, 140, 255);
   --label-color: black;
+  --box-shadow-color: black;
   --error-color: red;
+  --close-color: red;
   --box-shadow-black: #a49696;
   --task-border-color: rgb(0, 140, 255);
+  --modal-wrap-bg-color: rgba(0, 0, 0, 0.7);
 }
 
 body {
   overflow-x: hidden;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

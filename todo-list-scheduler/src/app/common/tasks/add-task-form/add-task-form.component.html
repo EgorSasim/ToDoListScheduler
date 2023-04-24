@@ -1,0 +1,57 @@
+<header class="add-task-form__header">Add task</header>
+
+<main class="add-task-form__inputs-wrap">
+  <div class="add-task-form__input">
+    <span class="add-task-form__input-label">title:</span>
+    <input
+      class="add-task-form__input-value"
+      type="text"
+      [formControl]="formGroup.get('title')"
+    />
+    <div
+      *ngIf="formGroup.get('title').errors && formGroup.get('title').touched"
+    >
+      Required field
+    </div>
+  </div>
+  <div class="add-task-form__input">
+    <span class="add-task-form__input-label">description:</span>
+
+    <textarea
+      class="add-task-form__input-value add-task-form__input-textarea"
+      type="text"
+      [formControl]="formGroup.get('description')"
+    ></textarea>
+  </div>
+  <div class="add-task-form__input">
+    <span class="add-task-form__input-label">date:</span>
+    <input
+      class="add-task-form__input-value"
+      type="date"
+      [formControl]="formGroup.get('date')"
+    />
+  </div>
+</main>
+
+<footer class="add-task-form__controls">
+  <app-button
+    class="add-task-form__controls-button add-task-form__control-add-task"
+    [content]="'Add'"
+    [contentColor]="'white'"
+    [borderRadius]="3"
+    (isClicked)="handleAddTaskButton()"
+  >
+  </app-button>
+  <app-button
+    class="add-task-form__controls-button add-task-form__control-cancel"
+    [content]="'Cancel'"
+    [contentColor]="'white'"
+    [borderRadius]="3"
+    (isClicked)="closeModal.emit()"
+  >
+  </app-button>
+</footer>
+
+<div class="add-task-form__close-modal" (click)="closeModal.emit()">
+  &#x2717;
+</div>

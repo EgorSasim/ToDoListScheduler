@@ -12,7 +12,7 @@ export class TaskService {
       id: new FormControl(1),
       completed: new FormControl(false),
       title: new FormControl('wash the car'),
-      text: new FormControl(
+      description: new FormControl(
         'tomorrow to to the washing shop, buy staff, kiss my wife and wash da car!!!'
       ),
       date: new FormControl(new Date()),
@@ -21,14 +21,14 @@ export class TaskService {
       id: new FormControl(2),
       completed: new FormControl(true),
       title: new FormControl('say hello'),
-      text: new FormControl(''),
+      description: new FormControl(''),
       date: new FormControl(new Date('1992, 7, 1')),
     }),
     new FormGroup<TaskForm>({
       id: new FormControl(3),
       completed: new FormControl(false),
       title: new FormControl('do homework'),
-      text: new FormControl(
+      description: new FormControl(
         'math and physics in prior, other lessons are bullshit, obviously '
       ),
       date: new FormControl(new Date()),
@@ -43,5 +43,11 @@ export class TaskService {
       (control) => control.value.id === id
     );
     this.TASKS.removeAt(index);
+    this.taskList$.next(this.TASKS);
+  }
+
+  public addTask(task: FormGroup<TaskForm>): void {
+    this.TASKS.push(task);
+    this.taskList$.next(this.TASKS);
   }
 }
