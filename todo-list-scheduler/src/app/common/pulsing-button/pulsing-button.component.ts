@@ -19,6 +19,7 @@ export class PulsingButtonComponent {
   @Input() public backgroundColor: string = 'rgb(0, 140, 255)';
   @Input() public contentColor: string = 'white';
   @Input() public content: string = '';
+  @Input() public contentSize: number = 5;
 
   @Output() public isClicked: EventEmitter<void> = new EventEmitter();
 }

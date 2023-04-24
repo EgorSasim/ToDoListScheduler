@@ -1,4 +1,7 @@
 .pulsing-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--control-color);
   position: relative;
   border: none;

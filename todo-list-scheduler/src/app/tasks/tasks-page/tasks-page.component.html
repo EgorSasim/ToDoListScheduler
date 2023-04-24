@@ -2,3 +2,10 @@
   class="tasks-page__tasks-list"
   [formArray]="tasksList$ | async"
 ></app-tasks-list>
+
+<app-pulsing-button
+  class="tasks-page__add-task"
+  [content]="'+'"
+  [contentSize]="2"
+  (isClicked)="openAddTaskModal()"
+></app-pulsing-button>

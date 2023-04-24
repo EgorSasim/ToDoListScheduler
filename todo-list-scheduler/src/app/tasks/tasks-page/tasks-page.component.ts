@@ -25,4 +25,8 @@ export class TasksPageComponent implements OnInit {
       this.tasksList$.next(tasksList);
     });
   }
+
+  public openAddTaskModal(): void {
+    console.log('add task');
+  }
 }
