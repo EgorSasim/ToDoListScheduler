@@ -2,7 +2,7 @@
   <input
     type="checkbox"
     class="task__completed"
-    [checked]="formGroup.get('completed').value"
+    [formControl]="formGroup.get('completed')"
   />
   <div class="task__title" (click)="openDetailedTaskModal(formGroup)">
     {{ formGroup.get("title").value }}
