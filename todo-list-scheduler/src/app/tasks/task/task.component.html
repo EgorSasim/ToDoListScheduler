@@ -9,7 +9,8 @@
   </div>
   <div class="task__delete">
     <img
-      src="trashSrc"
+      class="task__delete-icon"
+      [src]="trashSrc"
       alt="trash icon"
       (click)="removeTask(formGroup.get('id').value)"
     />

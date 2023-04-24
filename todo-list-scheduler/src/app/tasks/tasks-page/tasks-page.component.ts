@@ -21,8 +21,7 @@ export class TasksPageComponent implements OnInit {
   }
 
   public handleTasksList(): void {
-    this.tasksService.getTasksList().subscribe((tasksList) => {
-      console.log('tasksList:', tasksList);
+    this.tasksService.taskList$.subscribe((tasksList) => {
       this.tasksList$.next(tasksList);
     });
   }

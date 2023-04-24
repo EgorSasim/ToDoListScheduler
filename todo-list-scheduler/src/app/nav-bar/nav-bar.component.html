@@ -1,7 +1,7 @@
 <div class="nav-bar">
   <div class="nav-bar__item" (click)="showMenu()">
     <div>
-      <img class="nav-bar__item-image" src="{{ menuSrc }}" alt="tasks-image" />
+      <img class="nav-bar__item-image" [src]="menuSrc" alt="tasks-image" />
     </div>
   </div>
   <div
@@ -16,7 +16,7 @@
       Tasks
     </div>
     <div>
-      <img class="nav-bar__item-image" src="{{ tasksSrc }}" alt="tasks-image" />
+      <img class="nav-bar__item-image" [src]="tasksSrc" alt="tasks-image" />
     </div>
   </div>
   <div
@@ -33,7 +33,7 @@
     <div>
       <img
         class="nav-bar__item-image"
-        src="{{ calendarSrc }}"
+        [src]="calendarSrc"
         alt="calendar-image"
       />
     </div>
@@ -50,11 +50,7 @@
       Me
     </div>
     <div>
-      <img
-        class="nav-bar__item-image"
-        src="{{ profileSrc }}"
-        alt="profile-image"
-      />
+      <img class="nav-bar__item-image" [src]="profileSrc" alt="profile-image" />
     </div>
   </div>
 </div>

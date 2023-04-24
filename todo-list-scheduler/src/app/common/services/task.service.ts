@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
 import { TaskForm } from 'src/app/tasks/task/task.typings';
 
 @Injectable({
@@ -34,7 +34,14 @@ export class TaskService {
       date: new FormControl(new Date()),
     }),
   ]);
-  public getTasksList(): Observable<FormArray<FormGroup<TaskForm>>> {
-    return of(this.TASKS);
+
+  public taskList$: BehaviorSubject<FormArray<FormGroup<TaskForm>>> =
+    new BehaviorSubject(this.TASKS);
+
+  public removeTask(id: number) {
+    const index: number = this.TASKS.controls.findIndex(
+      (control) => control.value.id === id
+    );
+    this.TASKS.removeAt(index);
   }
 }
