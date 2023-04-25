@@ -1,0 +1,17 @@
+.input__wrap {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  row-gap: 0.5rem;
+  overflow: hidden;
+}
+
+.input__value {
+  width: 100%;
+  flex: 1;
+}
+
+.input__error-wrap {
+  flex: 1;
+  position: relative;
+}

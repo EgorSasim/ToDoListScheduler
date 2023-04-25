@@ -3,16 +3,17 @@
 <main class="add-task-form__inputs-wrap">
   <div class="add-task-form__input">
     <span class="add-task-form__input-label">title:</span>
-    <input
+    <app-input
       class="add-task-form__input-value"
       type="text"
-      [formControl]="formGroup.get('title')"
-    />
-    <div
-      *ngIf="formGroup.get('title').errors && formGroup.get('title').touched"
+      [control]="formGroup.get('title')"
     >
-      Required field
-    </div>
+      <div
+        *ngIf="formGroup.get('title').errors && formGroup.get('title').touched"
+      >
+        <app-error> Required field</app-error>
+      </div>
+    </app-input>
   </div>
   <div class="add-task-form__input">
     <span class="add-task-form__input-label">description:</span>

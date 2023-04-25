@@ -1,0 +1,10 @@
+<div
+  class="input__wrap"
+  [style.minWidth]="width + 'rem'"
+  [style.minHeight]="height + 'rem'"
+>
+  <input class="input__value" [type]="type" [formControl]="control" />
+  <div class="input__error-wrap">
+    <ng-content class="input__error"></ng-content>
+  </div>
+</div>

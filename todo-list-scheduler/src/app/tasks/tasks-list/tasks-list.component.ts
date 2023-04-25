@@ -24,7 +24,6 @@ export class TasksListComponent implements OnInit {
 
   private handleFormArrayChanges(): void {
     this.formArray.valueChanges.subscribe(() => {
-      console.log('mark for check');
       this.changeDetectorRef.markForCheck();
     });
   }
