@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
-import { BehaviorSubject, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
 import { TaskService } from 'src/app/common/services/task.service';
 import { TaskForm } from 'src/app/tasks/task/task.typings';
 // import { AddTaskModalFormComponent } from 'src/app/common/tasks/add-task-modal-form/add-task-modal-form.component';
@@ -21,24 +21,12 @@ export class TasksPageComponent implements OnInit {
     false
   );
 
-  public tasksList$: ReplaySubject<FormArray<FormGroup<TaskForm>>> =
-    new ReplaySubject(null);
-
   constructor(
     private tasksService: TaskService,
     private changeDetectorRef: ChangeDetectorRef
   ) {}
 
-  public ngOnInit(): void {
-    this.handleTasksList();
-  }
-
-  public handleTasksList(): void {
-    this.tasksService.taskList$.subscribe((tasksList) => {
-      this.tasksList$.next(tasksList);
-      this.changeDetectorRef.markForCheck();
-    });
-  }
+  public ngOnInit(): void {}
 
   public openAddTaskModal(): void {
     this.isOpenedAddTaskModal.next(true);

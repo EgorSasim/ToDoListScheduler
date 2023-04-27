@@ -9,6 +9,7 @@ import {
 import { FormGroup } from '@angular/forms';
 import { TaskService } from 'src/app/common/services/task.service';
 import { AddTaskFormBuilder } from 'src/app/common/tasks/add-task-form/add-task-form.builder';
+import { FormData } from 'src/app/common/typings/typings';
 import { TaskForm } from 'src/app/tasks/task/task.typings';
 
 @Component({
@@ -33,7 +34,7 @@ export class AddTaskModalFormComponent {
   }
 
   private addTask(): void {
-    this.taskService.addTask(this.formGroup);
+    this.taskService.addTask(this.formGroup.value as FormData<TaskForm>);
     this.closeModal.emit();
   }
 }
