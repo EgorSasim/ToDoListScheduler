@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
-import { TaskService } from 'src/app/common/services/task.service';
+import { TaskService } from 'src/app/common/services/tasks.service';
 import { TaskForm } from 'src/app/tasks/task/task.typings';
 // import { AddTaskModalFormComponent } from 'src/app/common/tasks/add-task-modal-form/add-task-modal-form.component';
 

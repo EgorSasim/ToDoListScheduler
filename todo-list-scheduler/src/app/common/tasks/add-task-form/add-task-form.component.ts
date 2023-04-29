@@ -7,7 +7,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { TaskService } from 'src/app/common/services/task.service';
+import { TaskService } from 'src/app/common/services/tasks.service';
 import { AddTaskFormBuilder } from 'src/app/common/tasks/add-task-form/add-task-form.builder';
 import { FormData } from 'src/app/common/typings/typings';
 import { TaskForm } from 'src/app/tasks/task/task.typings';
@@ -34,7 +34,11 @@ export class AddTaskModalFormComponent {
   }
 
   private addTask(): void {
-    this.taskService.addTask(this.formGroup.value as FormData<TaskForm>);
-    this.closeModal.emit();
+    this.taskService
+      .addTask(this.formGroup.value as FormData<TaskForm>)
+      .subscribe((res) => {
+        this.taskService.tasksListHasChanged$.next();
+        this.closeModal.emit();
+      });
   }
 }

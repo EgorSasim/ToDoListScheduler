@@ -1,4 +1,12 @@
-import { Controller, Delete, Get, HttpCode, Post, Req } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Post,
+  Put,
+  Req,
+} from '@nestjs/common';
 import { TasksService } from 'src/tasks/tasks.service';
 import { Task } from 'src/tasks/tasks.typings';
 
@@ -13,15 +21,22 @@ export class TasksController {
   }
 
   @Delete('remove')
+  @HttpCode(200)
   public removeTask(@Req() req: Request): void {
     const id: number = req.body['id'];
-    console.log('req: ', req.body['id']);
     this.tasksService.removeTask(id);
-    console.log('this tasks: ', this.tasksService.TASKS);
   }
 
   @Post('add')
-  public addTask(): void {
-    console.log('add task');
+  @HttpCode(200)
+  public addTask(@Req() req: Request): void {
+    this.tasksService.addTask(req.body['task']);
+  }
+
+  @Put('update')
+  @HttpCode(200)
+  public updateTask(@Req() req: Request): void {
+    console.log('update task');
+    this.tasksService.updateTasks(req.body['task']);
   }
 }

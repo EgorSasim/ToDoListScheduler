@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { Observable, map, startWith } from 'rxjs';
+import { Observable, Subject, map, startWith } from 'rxjs';
 import { FormData } from 'src/app/common/typings/typings';
 import { SERVER_ADDRESS } from 'src/app/constants/server.constants';
 import { TaskForm } from 'src/app/tasks/task/task.typings';
@@ -40,6 +40,8 @@ export class TaskService {
     }),
   ]);
 
+  public tasksListHasChanged$: Subject<void> = new Subject();
+
   public getTasks(): Observable<FormData<TaskForm[]>> {
     return this.httpClient
       .get<Observable<FormData<TaskForm[]>>>(SERVER_ADDRESS + '/tasks/get')
@@ -57,8 +59,13 @@ export class TaskService {
   }
 
   public addTask(task: FormData<TaskForm>) {
-    console.log('add task');
-    return this.httpClient.post(SERVER_ADDRESS + '/tasks/add', task);
+    return this.httpClient.post(SERVER_ADDRESS + '/tasks/add', { task: task });
+  }
+
+  public updateTask(task: FormData<TaskForm>) {
+    return this.httpClient.put(SERVER_ADDRESS + '/tasks/update', {
+      task: task,
+    });
   }
 
   private convertTaskDataToReactiveForm(

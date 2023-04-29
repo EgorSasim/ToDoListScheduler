@@ -36,9 +36,21 @@ export class TasksService {
     const index: number = this.TASKS.map((task) => task.id).findIndex(
       (task_id) => task_id == id,
     );
-    console.log('index: ', index);
+
     if (index != -1 && index != undefined && index != null) {
       this.TASKS.splice(index, 1);
     }
+  }
+
+  public addTask(task: Task): void {
+    task.id = Math.max(...this.TASKS.map((task) => task.id)) + 1;
+    this.TASKS.push(task);
+  }
+
+  public updateTasks(task: Task): void {
+    const index = this.TASKS.findIndex((task) => (task.id = task.id));
+    console.log('task before: ', this.TASKS[index]);
+    this.TASKS[index] = JSON.parse(JSON.stringify(task));
+    console.log('task after: ', this.TASKS[index]);
   }
 }

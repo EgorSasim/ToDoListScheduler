@@ -9,7 +9,8 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { take } from 'rxjs';
-import { TaskService } from 'src/app/common/services/task.service';
+import { TaskService } from 'src/app/common/services/tasks.service';
+import { FormData } from 'src/app/common/typings/typings';
 import { TRASH_SRC } from 'src/app/tasks/task/task.constants';
 import { TaskForm } from 'src/app/tasks/task/task.typings';
 
@@ -33,8 +34,21 @@ export class TaskComponent {
 
   public removeTask(id: number) {
     this.taskService.removeTask(id).subscribe((response) => {
-      console.log('response: ', response);
-      this.taskIsRemoved.emit();
+      this.taskService.tasksListHasChanged$.next();
     });
+  }
+
+  public handleCompletedState(): void {
+    this.formGroup.get('completed').valueChanges.subscribe(() => {
+      console.log('value has changed');
+      this.taskService.updateTask(this.formGroup.value as FormData<TaskForm>);
+    });
+  }
+
+  public smthHappened(): void {
+    console.log('smth happened');
+    this.formGroup
+      .get('completed')
+      .setValue(!this.formGroup.get('completed').value);
   }
 }
