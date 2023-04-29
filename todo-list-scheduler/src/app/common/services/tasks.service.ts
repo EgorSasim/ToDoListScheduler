@@ -12,34 +12,6 @@ import { TaskForm } from 'src/app/tasks/task/task.typings';
 export class TaskService {
   constructor(private httpClient: HttpClient) {}
 
-  private TASKS: FormArray<FormGroup<TaskForm>> = new FormArray([
-    new FormGroup<TaskForm>({
-      id: new FormControl(1),
-      completed: new FormControl(false),
-      title: new FormControl('wash the car'),
-      description: new FormControl(
-        'tomorrow to to the washing shop, buy staff, kiss my wife and wash da car!!!'
-      ),
-      date: new FormControl(new Date()),
-    }),
-    new FormGroup<TaskForm>({
-      id: new FormControl(2),
-      completed: new FormControl(true),
-      title: new FormControl('say hello'),
-      description: new FormControl(''),
-      date: new FormControl(new Date('1992, 7, 1')),
-    }),
-    new FormGroup<TaskForm>({
-      id: new FormControl(3),
-      completed: new FormControl(false),
-      title: new FormControl('do homework'),
-      description: new FormControl(
-        'math and physics in prior, other lessons are bullshit, obviously '
-      ),
-      date: new FormControl(new Date()),
-    }),
-  ]);
-
   public tasksListHasChanged$: Subject<void> = new Subject();
 
   public getTasks(): Observable<FormData<TaskForm[]>> {

@@ -1,12 +1,21 @@
-<form class="task">
+<form
+  class="task"
+  [class.is-overdue]="
+    formGroup.get('date').value &&
+    convertStringToDate(formGroup.get('date').value) < currDate
+  "
+  [class.is-completed]="formGroup.get('completed').value"
+>
   <input
     type="checkbox"
     class="task__completed"
     [formControl]="formGroup.get('completed')"
-    (click)="smthHappened()"
   />
   <div class="task__title" (click)="openDetailedTaskModal(formGroup)">
     {{ formGroup.get("title").value }}
+  </div>
+  <div *ngIf="formGroup.get('date').value" class="task__date">
+    {{ formatDate(formGroup.get("date").value) }}
   </div>
   <div class="task__delete">
     <img

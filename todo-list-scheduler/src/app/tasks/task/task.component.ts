@@ -20,16 +20,22 @@ import { TaskForm } from 'src/app/tasks/task/task.typings';
   styleUrls: ['./task.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskComponent {
+export class TaskComponent implements OnInit {
   @Input() public formGroup: FormGroup<TaskForm>;
   @Output() public taskIsRemoved: EventEmitter<void> = new EventEmitter();
   public readonly trashSrc: string = TRASH_SRC;
+  public readonly currDate: Date = new Date(
+    new Date().setDate(new Date().getDate() - 1)
+  );
 
   constructor(
     private taskService: TaskService,
     private cdr: ChangeDetectorRef
   ) {}
 
+  public ngOnInit(): void {
+    this.handleCompletedState();
+  }
   public openDetailedTaskModal(task: FormGroup<TaskForm>): void {}
 
   public removeTask(id: number) {
@@ -40,15 +46,26 @@ export class TaskComponent {
 
   public handleCompletedState(): void {
     this.formGroup.get('completed').valueChanges.subscribe(() => {
-      console.log('value has changed');
-      this.taskService.updateTask(this.formGroup.value as FormData<TaskForm>);
+      this.taskService
+        .updateTask({
+          ...this.formGroup.value,
+          completed: !this.formGroup.value.completed,
+        } as FormData<TaskForm>)
+        .subscribe((res) => {
+          this.taskService.tasksListHasChanged$.next();
+          this.cdr.markForCheck();
+        });
     });
   }
 
-  public smthHappened(): void {
-    console.log('smth happened');
-    this.formGroup
-      .get('completed')
-      .setValue(!this.formGroup.get('completed').value);
+  public formatDate(date: Date | string): string {
+    const convertedDate = new Date(date);
+    return `${convertedDate.getDate()}/${
+      convertedDate.getMonth() + 1
+    }/${convertedDate.getFullYear()}`;
+  }
+
+  public convertStringToDate(str: string): Date {
+    return new Date(str);
   }
 }

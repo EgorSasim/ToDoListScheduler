@@ -5,3 +5,10 @@
 >
   <app-task [formGroup]="task" (taskIsRemoved)="getTasks()"></app-task>
 </div>
+
+<div
+  *ngIf="!(tasksList$ | async)?.controls.length"
+  class="tasks-list__empty-list"
+>
+  No created tasks, to create a task click on pulsing button below
+</div>
