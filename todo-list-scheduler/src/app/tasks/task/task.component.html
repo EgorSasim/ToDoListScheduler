@@ -11,7 +11,13 @@
     class="task__completed"
     [formControl]="formGroup.get('completed')"
   />
-  <div class="task__title" (click)="openDetailedTaskModal(formGroup)">
+  <div
+    class="task__title"
+    routerLink="/without-nav-bar/task-detailed-page/{{
+      formGroup.get('id').value
+    }}"
+    (click)="openDetailedTaskModal(formGroup)"
+  >
     {{ formGroup.get("title").value }}
   </div>
   <div *ngIf="formGroup.get('date').value" class="task__date">

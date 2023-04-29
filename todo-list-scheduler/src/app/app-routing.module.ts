@@ -31,8 +31,12 @@ const routes: Routes = [
     component: WithoutNavBarComponent,
     children: [
       {
-        path: 'task-detailed-page',
+        path: 'task-detailed-page/:id',
         component: TaskDetailedPageComponent,
+        loadChildren: () =>
+          import(
+            '../app/common/tasks/tasks-detailed-page/task-detailed-page.module'
+          ).then((m) => m.TaskDetailedPageModule),
       },
     ],
   },

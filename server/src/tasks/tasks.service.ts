@@ -32,6 +32,10 @@ export class TasksService {
     return this.TASKS;
   }
 
+  public getTask(id: number): Task {
+    return this.TASKS.find((task) => task.id == id);
+  }
+
   public removeTask(id: number): void {
     const index: number = this.TASKS.map((task) => task.id).findIndex(
       (task_id) => task_id == id,

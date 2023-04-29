@@ -14,14 +14,22 @@ export class TaskService {
 
   public tasksListHasChanged$: Subject<void> = new Subject();
 
-  public getTasks(): Observable<FormData<TaskForm[]>> {
+  public getTasks(): Observable<FormArray<FormGroup<TaskForm>>> {
     return this.httpClient
-      .get<Observable<FormData<TaskForm[]>>>(SERVER_ADDRESS + '/tasks/get')
+      .get<FormData<TaskForm[]>>(SERVER_ADDRESS + '/tasks/get')
       .pipe(
         map((tasks: FormData<TaskForm[]>) =>
-          this.convertTaskDataToReactiveForm(tasks)
+          this.convertTaskDataArrayToReactiveFormArray(tasks)
         )
       ) as Observable<FormData<TaskForm[]>>;
+  }
+
+  public getTask(id: number): Observable<FormGroup<TaskForm>> {
+    return this.httpClient
+      .get<FormData<TaskForm>>(SERVER_ADDRESS + '/tasks/' + id)
+      .pipe(
+        map((task) => this.convertTaskDataToReactiveForm(task))
+      ) as Observable<FormGroup<TaskForm>>;
   }
 
   public removeTask(id: number) {
@@ -40,7 +48,7 @@ export class TaskService {
     });
   }
 
-  private convertTaskDataToReactiveForm(
+  private convertTaskDataArrayToReactiveFormArray(
     tasks: FormData<TaskForm>[]
   ): FormArray<FormGroup<TaskForm>> {
     const formArray = new FormArray([]);
@@ -57,6 +65,18 @@ export class TaskService {
       )
     );
     return formArray;
+  }
+
+  private convertTaskDataToReactiveForm(
+    task: FormData<TaskForm>
+  ): FormGroup<TaskForm> {
+    return new FormGroup({
+      id: new FormControl(task.id),
+      completed: new FormControl(task.completed),
+      title: new FormControl(task.title),
+      description: new FormControl(task.description),
+      date: new FormControl(task.date),
+    });
   }
 
   private buildTaskForm(task: FormData<TaskForm>): FormGroup<TaskForm> {

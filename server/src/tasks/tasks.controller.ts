@@ -3,6 +3,7 @@ import {
   Delete,
   Get,
   HttpCode,
+  Param,
   Post,
   Put,
   Req,
@@ -18,6 +19,12 @@ export class TasksController {
   @HttpCode(200)
   public getTasks(): Task[] {
     return this.tasksService.getTasks();
+  }
+
+  @Get(':id')
+  public getTask(@Param() params: any): { task: Task } {
+    console.log('params: ', params);
+    return { task: this.tasksService.getTask(params['id']) };
   }
 
   @Delete('remove')
