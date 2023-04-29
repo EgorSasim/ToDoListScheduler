@@ -1,4 +1,7 @@
 <header class="tasks-list__header">Tasks List</header>
-<div *ngFor="let task of (taskList$ | async).controls" class="tasks-list__task">
-  <app-task [formGroup]="task"></app-task>
+<div
+  *ngFor="let task of (tasksList$ | async)?.controls"
+  class="tasks-list__task"
+>
+  <app-task [formGroup]="task" (taskIsRemoved)="getTasks()"></app-task>
 </div>

@@ -1,27 +1,27 @@
-import { Controller, Get, HttpCode } from '@nestjs/common';
-import { TASKS } from 'src/tasks/tasks.constants';
+import { Controller, Delete, Get, HttpCode, Post, Req } from '@nestjs/common';
+import { TasksService } from 'src/tasks/tasks.service';
 import { Task } from 'src/tasks/tasks.typings';
 
 @Controller('tasks')
 export class TasksController {
+  constructor(private tasksService: TasksService) {}
+
   @Get('get')
   @HttpCode(200)
-  getTasks(): Task[] {
-    return TASKS;
+  public getTasks(): Task[] {
+    return this.tasksService.getTasks();
   }
 
-  @Get('sort')
-  sortTasks(): string {
-    return 'sort tasks';
+  @Delete('remove')
+  public removeTask(@Req() req: Request): void {
+    const id: number = req.body['id'];
+    console.log('req: ', req.body['id']);
+    this.tasksService.removeTask(id);
+    console.log('this tasks: ', this.tasksService.TASKS);
   }
 
-  @Get('remove')
-  removeTask(): string {
-    return 'remove task';
-  }
-
-  @Get('add')
-  addTask(): string {
-    return 'add task';
+  @Post('add')
+  public addTask(): void {
+    console.log('add task');
   }
 }
