@@ -9,7 +9,10 @@
       [control]="formGroup.get('title')"
     >
       <div
-        *ngIf="formGroup.get('title').errors && formGroup.get('title').touched"
+        *ngIf="
+          formGroup.get('title').errors &&
+          (formGroup.get('title').touched || formGroup.get('title').dirty)
+        "
       >
         <app-error> Required field</app-error>
       </div>

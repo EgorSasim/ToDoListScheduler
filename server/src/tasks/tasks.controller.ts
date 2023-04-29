@@ -36,7 +36,6 @@ export class TasksController {
   @Put('update')
   @HttpCode(200)
   public updateTask(@Req() req: Request): void {
-    console.log('update task');
     this.tasksService.updateTasks(req.body['task']);
   }
 }

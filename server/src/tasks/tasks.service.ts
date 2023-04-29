@@ -8,15 +8,15 @@ export class TasksService {
       id: 1,
       completed: true,
       title: 'WOW',
-      description: 'Worl of Warcraft',
-      date: new Date(),
+      description: 'World of Warcraft',
+      date: new Date().toString(),
     },
     {
       id: 2,
       completed: false,
       title: 'Wash the car',
       description: 'wash my car tomorrow',
-      date: new Date('1997-01-01'),
+      date: new Date('1997-01-01').toString(),
     },
     {
       id: 3,
@@ -24,7 +24,7 @@ export class TasksService {
       title: 'bring my life back',
       description:
         "Do smth with my life, I don't know how, but I must do it or die",
-      date: new Date('2002-10-02'),
+      date: new Date('2002-10-02').toString(),
     },
   ];
 
@@ -43,14 +43,15 @@ export class TasksService {
   }
 
   public addTask(task: Task): void {
-    task.id = Math.max(...this.TASKS.map((task) => task.id)) + 1;
+    task.id =
+      this.TASKS.length != 0
+        ? Math.max(...this.TASKS.map((task) => task.id)) + 1
+        : 1;
     this.TASKS.push(task);
   }
 
   public updateTasks(task: Task): void {
-    const index = this.TASKS.findIndex((task) => (task.id = task.id));
-    console.log('task before: ', this.TASKS[index]);
+    const index = this.TASKS.findIndex((_task) => _task.id == task.id);
     this.TASKS[index] = JSON.parse(JSON.stringify(task));
-    console.log('task after: ', this.TASKS[index]);
   }
 }
