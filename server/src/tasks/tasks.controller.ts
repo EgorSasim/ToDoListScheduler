@@ -22,9 +22,8 @@ export class TasksController {
   }
 
   @Get(':id')
-  public getTask(@Param() params: any): { task: Task } {
-    console.log('params: ', params);
-    return { task: this.tasksService.getTask(params['id']) };
+  public getTask(@Param() params: any): Task {
+    return this.tasksService.getTask(params['id']);
   }
 
   @Delete('remove')

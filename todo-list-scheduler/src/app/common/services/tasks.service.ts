@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { Observable, Subject, map, startWith } from 'rxjs';
+import { Observable, Subject, map, startWith, tap } from 'rxjs';
 import { FormData } from 'src/app/common/typings/typings';
 import { SERVER_ADDRESS } from 'src/app/constants/server.constants';
 import { TaskForm } from 'src/app/tasks/task/task.typings';
@@ -71,16 +71,6 @@ export class TaskService {
     task: FormData<TaskForm>
   ): FormGroup<TaskForm> {
     return new FormGroup({
-      id: new FormControl(task.id),
-      completed: new FormControl(task.completed),
-      title: new FormControl(task.title),
-      description: new FormControl(task.description),
-      date: new FormControl(task.date),
-    });
-  }
-
-  private buildTaskForm(task: FormData<TaskForm>): FormGroup<TaskForm> {
-    return new FormGroup<TaskForm>({
       id: new FormControl(task.id),
       completed: new FormControl(task.completed),
       title: new FormControl(task.title),

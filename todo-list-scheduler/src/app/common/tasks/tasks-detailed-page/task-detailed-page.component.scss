@@ -1,0 +1,17 @@
+.task-detailed-page__header {
+  padding: 1.2rem;
+  display: flex;
+  justify-content: right;
+  column-gap: 1.5rem;
+}
+
+.task-detailed-page {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.task-detailed-page__description {
+  width: 100%;
+  resize: none;
+  height: 6rem;
+}

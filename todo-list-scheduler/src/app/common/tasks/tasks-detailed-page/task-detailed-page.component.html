@@ -1,8 +1,24 @@
-<!-- <div class="task-detailed-page">
-  <app placeholder="title" type="text" [formControl]="formGroup.get('title')" />
+<header class="task-detailed-page__header">
+  <app-button
+    [width]="'6'"
+    [height]="'3'"
+    [fontSize]="1"
+    [borderRadius]="'2'"
+    [content]="'Reset'"
+  ></app-button>
+  <app-button
+    [width]="'6'"
+    [height]="'3'"
+    [fontSize]="1"
+    [borderRadius]="'2'"
+    [content]="'Save'"
+  ></app-button>
+</header>
+<main class="task-detailed-page">
+  <app-input [control]="formGroup.get('title')"> </app-input>
+
   <textarea
-    cols="30"
-    rows="10"
+    class="task-detailed-page__description"
     [formControl]="formGroup.get('description')"
   ></textarea>
-</div> -->
+</main>

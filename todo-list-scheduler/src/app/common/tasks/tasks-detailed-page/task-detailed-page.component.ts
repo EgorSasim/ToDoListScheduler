@@ -1,12 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { TaskService } from 'src/app/common/services/tasks.service';
+import { FormData } from 'src/app/common/typings/typings';
 import { TaskForm } from 'src/app/tasks/task/task.typings';
 
 @Component({
@@ -15,8 +11,8 @@ import { TaskForm } from 'src/app/tasks/task/task.typings';
   styleUrls: ['./task-detailed-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskDetailedPageComponent implements OnInit {
-  public formGroup: FormGroup<TaskForm>;
+export class TaskDetailedPageComponent {
+  public formGroup: FormGroup<TaskForm> = this.initEmptyFormGroup();
 
   constructor(
     private tasksService: TaskService,
@@ -24,13 +20,19 @@ export class TaskDetailedPageComponent implements OnInit {
   ) {
     this.activatedRoute.params.subscribe((val) => {
       this.tasksService.getTask(val['id']).subscribe((formGroup) => {
-        this.formGroup = formGroup;
-        console.log('form group: ', formGroup);
+        console.log('formGroup: ', formGroup);
+        this.formGroup.setValue(formGroup.value as FormData<TaskForm>);
       });
     });
   }
 
-  public ngOnInit(): void {
-    return;
+  private initEmptyFormGroup(): FormGroup<TaskForm> {
+    return new FormGroup({
+      id: new FormControl(null),
+      completed: new FormControl(null),
+      title: new FormControl(null),
+      description: new FormControl(null),
+      date: new FormControl(null),
+    });
   }
 }
