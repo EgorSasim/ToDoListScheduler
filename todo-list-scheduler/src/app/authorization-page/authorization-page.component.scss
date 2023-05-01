@@ -1,0 +1,32 @@
+.authorization-page__header {
+  text-align: center;
+  color: var(--main-font-color);
+  font-size: 3rem;
+  padding: 3rem;
+}
+
+.authorization-page__main {
+  width: 50%;
+  margin: 0 auto;
+  border: 1px solid var(--main-border-color);
+  padding: 2.5rem;
+  border-radius: 2rem;
+}
+
+.authorization-page__input-wrap {
+  padding: 1.5rem;
+}
+
+.authorization-page__input-wrap-label {
+  color: var(--main-font-color);
+  margin-bottom: 1.2rem;
+  display: block;
+  font-size: 1.2rem;
+}
+
+.authorization-page__controls {
+  width: 80%;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+}

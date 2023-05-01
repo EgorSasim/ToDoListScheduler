@@ -1,0 +1,50 @@
+<header class="authorization-page__header">Authorization</header>
+
+<main class="authorization-page__main">
+  <div class="authorization-page__input-wrap authorization-page__login">
+    <label class="authorization-page__input-wrap-label">Login:</label>
+    <app-input
+      class="authorization-page__input-wrap-label-input"
+      [control]="formGroup.get('login')"
+    >
+      <div
+        *ngIf="
+          formGroup.get('login').errors &&
+          (formGroup.get('login').touched || formGroup.get('login').dirty)
+        "
+      >
+        <app-error> Required field</app-error>
+      </div>
+    </app-input>
+  </div>
+  <div class="authorization-page__input-wrap authorization-page__password">
+    <label class="authorization-page__input-wrap-label">Password:</label>
+    <app-input
+      class="authorization-page__input-wrap-input"
+      [control]="formGroup.get('password')"
+    >
+      <div
+        *ngIf="
+          formGroup.get('password').errors &&
+          (formGroup.get('password').touched || formGroup.get('password').dirty)
+        "
+      >
+        <app-error> Required field</app-error>
+      </div>
+    </app-input>
+  </div>
+  <div class="authorization-page__controls">
+    <app-button
+      class="authorization-page__controls-button"
+      [borderRadius]="3"
+      [content]="'Sign Up'"
+      [disabled]="formGroup.invalid"
+    ></app-button>
+    <app-button
+      class="authorization-page__controls-button"
+      [borderRadius]="3"
+      [content]="'Sign In'"
+      [disabled]="formGroup.invalid"
+    ></app-button>
+  </div>
+</main>
