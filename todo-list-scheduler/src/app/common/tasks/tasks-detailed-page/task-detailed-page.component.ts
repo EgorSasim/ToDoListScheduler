@@ -43,7 +43,7 @@ export class TaskDetailedPageComponent {
       .updateTask(this.formGroup.value as FormData<TaskForm>)
       .subscribe();
     this.tasksService.tasksListHasChanged$.next();
-    this.router.navigate(['/']);
+    this.router.navigate(['/with-nav-bar/tasks-page']);
   }
 
   public resetTask(): void {
