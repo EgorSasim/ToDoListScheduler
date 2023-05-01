@@ -1,9 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { Task } from 'src/tasks/tasks.typings';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Task } from 'src/tasks/task.schema';
+import { UserTask } from 'src/tasks/tasks.typings';
 
 @Injectable()
 export class TasksService {
-  public TASKS: Task[] = [
+  // constructor(@InjectModel(Task.name) private taskModel: Model<Task>) {}
+  public TASKS: UserTask[] = [
     {
       id: 1,
       completed: true,
@@ -28,11 +32,11 @@ export class TasksService {
     },
   ];
 
-  public getTasks(): Task[] {
+  public getTasks(): UserTask[] {
     return this.TASKS;
   }
 
-  public getTask(id: number): Task {
+  public getTask(id: number): UserTask {
     return this.TASKS.find((task) => task.id == id);
   }
 
@@ -46,7 +50,7 @@ export class TasksService {
     }
   }
 
-  public addTask(task: Task): void {
+  public addTask(task: UserTask): void {
     task.id =
       this.TASKS.length != 0
         ? Math.max(...this.TASKS.map((task) => task.id)) + 1
@@ -54,7 +58,7 @@ export class TasksService {
     this.TASKS.push(task);
   }
 
-  public updateTasks(task: Task): void {
+  public updateTasks(task: UserTask): void {
     const index = this.TASKS.findIndex((_task) => _task.id == task.id);
     this.TASKS[index] = JSON.parse(JSON.stringify(task));
   }

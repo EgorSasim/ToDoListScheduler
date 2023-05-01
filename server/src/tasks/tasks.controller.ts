@@ -9,7 +9,7 @@ import {
   Req,
 } from '@nestjs/common';
 import { TasksService } from 'src/tasks/tasks.service';
-import { Task } from 'src/tasks/tasks.typings';
+import { UserTask } from 'src/tasks/tasks.typings';
 
 @Controller('tasks')
 export class TasksController {
@@ -17,12 +17,12 @@ export class TasksController {
 
   @Get('get')
   @HttpCode(200)
-  public getTasks(): Task[] {
+  public getTasks(): UserTask[] {
     return this.tasksService.getTasks();
   }
 
   @Get(':id')
-  public getTask(@Param() params: any): Task {
+  public getTask(@Param() params: any): UserTask {
     return this.tasksService.getTask(params['id']);
   }
 
