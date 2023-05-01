@@ -5,6 +5,7 @@
     [fontSize]="1"
     [borderRadius]="'2'"
     [content]="'Reset'"
+    (isClicked)="resetTask()"
   ></app-button>
   <app-button
     [width]="'6'"
@@ -12,13 +13,33 @@
     [fontSize]="1"
     [borderRadius]="'2'"
     [content]="'Save'"
+    [disabled]="formGroup.invalid"
+    (isClicked)="saveTask()"
   ></app-button>
 </header>
 <main class="task-detailed-page">
-  <app-input [control]="formGroup.get('title')"> </app-input>
+  <app-input [control]="formGroup.get('title')">
+    <div
+      *ngIf="
+        formGroup.get('title').errors &&
+        (formGroup.get('title').touched || formGroup.get('title').dirty)
+      "
+    >
+      <app-error> Required field</app-error>
+    </div>
+  </app-input>
 
   <textarea
     class="task-detailed-page__description"
     [formControl]="formGroup.get('description')"
   ></textarea>
+
+  <app-input [type]="'date'" [control]="formGroup.get('date')"></app-input>
+
+  <div class="task-detailed-page__mark-as-done">
+    <label class="task-detailed-page__mark-as-done__label"
+      >mark as done:
+    </label>
+    <input type="checkbox" [formControl]="formGroup.get('completed')" />
+  </div>
 </main>

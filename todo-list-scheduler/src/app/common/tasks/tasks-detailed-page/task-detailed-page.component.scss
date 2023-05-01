@@ -15,3 +15,9 @@
   resize: none;
   height: 6rem;
 }
+
+.task-detailed-page__mark-as-done {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+}
