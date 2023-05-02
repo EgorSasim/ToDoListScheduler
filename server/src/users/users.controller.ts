@@ -11,7 +11,9 @@ export class UsersController {
 
   @Post('sign-up')
   public signUp(@Req() req: Request): void {
-    this.usersService.signUp();
-    return;
+    const userData = this.usersService.signUp(
+      req.body['login'],
+      req.body['password'],
+    );
   }
 }

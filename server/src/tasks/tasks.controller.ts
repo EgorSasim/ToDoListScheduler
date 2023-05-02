@@ -17,31 +17,33 @@ export class TasksController {
 
   @Get('get')
   @HttpCode(200)
-  public getTasks(): UserTask[] {
-    return this.tasksService.getTasks();
+  async getTasks(): Promise<UserTask[]> {
+    const tasks = await this.tasksService.getTasks();
+    return tasks;
   }
 
   @Get(':id')
-  public getTask(@Param() params: any): UserTask {
-    return this.tasksService.getTask(params['id']);
+  async getTask(@Param() params: any): Promise<UserTask> {
+    const task = await this.tasksService.getTask(params['id']);
+    return task;
   }
 
   @Delete('remove')
   @HttpCode(200)
-  public removeTask(@Req() req: Request): void {
-    const id: number = req.body['id'];
-    this.tasksService.removeTask(id);
+  async removeTask(@Req() req: Request): Promise<void> {
+    const id: string = req.body['id'];
+    await this.tasksService.removeTask(id);
   }
 
   @Post('add')
   @HttpCode(200)
-  public addTask(@Req() req: Request): void {
-    this.tasksService.addTask(req.body['task']);
+  async addTask(@Req() req: Request): Promise<void> {
+    await this.tasksService.addTask(req.body['task']);
   }
 
   @Put('update')
   @HttpCode(200)
-  public updateTask(@Req() req: Request): void {
-    this.tasksService.updateTasks(req.body['task']);
+  async updateTask(@Req() req: Request): Promise<void> {
+    await this.tasksService.updateTasks(req.body['task']);
   }
 }

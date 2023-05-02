@@ -1,7 +1,8 @@
 export interface UserTask {
-  id: number;
+  id: string;
   completed: boolean;
   title: string;
   description: string;
   date: string;
+  user: string;
 }
