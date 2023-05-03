@@ -30,13 +30,16 @@ export class AddTaskModalFormComponent {
   ) {}
 
   public handleAddTaskButton(): void {
+    console.log('handle add taks button');
     this.formGroup.invalid ? this.formGroup.markAllAsTouched() : this.addTask();
   }
 
   private addTask(): void {
+    console.log('add task');
     this.taskService
       .addTask(this.formGroup.value as FormData<TaskForm>)
       .subscribe((res) => {
+        console.log('res: ', res);
         this.taskService.tasksListHasChanged$.next();
         this.closeModal.emit();
       });

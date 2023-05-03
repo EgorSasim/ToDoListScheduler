@@ -39,12 +39,14 @@
       [borderRadius]="3"
       [content]="'Sign Up'"
       [disabled]="formGroup.invalid"
+      (isClicked)="signUp()"
     ></app-button>
     <app-button
       class="authorization-page__controls-button"
       [borderRadius]="3"
       [content]="'Sign In'"
       [disabled]="formGroup.invalid"
+      (isClicked)="signIn()"
     ></app-button>
   </div>
 </main>

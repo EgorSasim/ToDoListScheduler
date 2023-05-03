@@ -17,8 +17,9 @@ export class TasksController {
 
   @Get('get')
   @HttpCode(200)
-  async getTasks(): Promise<UserTask[]> {
-    const tasks = await this.tasksService.getTasks();
+  async getTasks(@Req() req: Request): Promise<UserTask[]> {
+    const userId = req['user']['id'];
+    const tasks = await this.tasksService.getTasks(userId);
     return tasks;
   }
 
@@ -38,7 +39,11 @@ export class TasksController {
   @Post('add')
   @HttpCode(200)
   async addTask(@Req() req: Request): Promise<void> {
-    await this.tasksService.addTask(req.body['task']);
+    console.log('server add task1', req.body);
+    const userId = req['user']['id'];
+    await this.tasksService.addTask(req.body['task'], userId);
+    console.log('server add task2', req.body);
+    return;
   }
 
   @Put('update')

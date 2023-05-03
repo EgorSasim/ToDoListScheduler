@@ -9,8 +9,8 @@ import { UserTask } from 'src/tasks/tasks.typings';
 export class TasksService {
   constructor(@InjectModel(Task.name) private taskModel: Model<Task>) {}
 
-  async getTasks(): Promise<UserTask[]> {
-    const tasks = await this.taskModel.find();
+  async getTasks(userId: string): Promise<UserTask[]> {
+    const tasks = await this.taskModel.find({ user: userId });
     const tasksDto = tasks.map((task) => {
       return new CreateTaskDto(task);
     });
@@ -26,8 +26,9 @@ export class TasksService {
     await this.taskModel.findByIdAndRemove(id);
   }
 
-  async addTask(task: UserTask): Promise<void> {
-    await this.taskModel.create(task);
+  async addTask(task: UserTask, userId: string): Promise<void> {
+    console.log('user Id', userId);
+    await this.taskModel.create({ ...task, user: userId });
   }
 
   async updateTasks(task: UserTask): Promise<void> {
