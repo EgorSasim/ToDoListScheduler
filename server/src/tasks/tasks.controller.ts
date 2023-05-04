@@ -39,10 +39,8 @@ export class TasksController {
   @Post('add')
   @HttpCode(200)
   async addTask(@Req() req: Request): Promise<void> {
-    console.log('server add task1', req.body);
     const userId = req['user']['id'];
     await this.tasksService.addTask(req.body['task'], userId);
-    console.log('server add task2', req.body);
     return;
   }
 

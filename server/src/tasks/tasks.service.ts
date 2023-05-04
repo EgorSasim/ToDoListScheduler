@@ -27,7 +27,6 @@ export class TasksService {
   }
 
   async addTask(task: UserTask, userId: string): Promise<void> {
-    console.log('user Id', userId);
     await this.taskModel.create({ ...task, user: userId });
   }
 

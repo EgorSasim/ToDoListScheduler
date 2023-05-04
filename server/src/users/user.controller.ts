@@ -9,8 +9,6 @@ export class UserController {
   async registrate(@Req() req: Request): Promise<{ token: string }> {
     const login = req.body['data']['login'];
     const password = req.body['data']['password'];
-    console.log('login: ', login);
-    console.log('password: ', password);
     const accessToken = await this.userService.registrate(login, password);
     return { token: accessToken };
   }
@@ -20,7 +18,6 @@ export class UserController {
   async login(@Req() req: Request): Promise<{ token: string }> {
     const login = req.body['data']['login'];
     const password = req.body['data']['password'];
-    console.log('password: ', password);
     const accessToken = await this.userService.login(login, password);
     return { token: accessToken };
   }

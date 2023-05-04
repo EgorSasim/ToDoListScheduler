@@ -50,7 +50,6 @@ export class TaskService {
   }
 
   public addTask(task: FormData<TaskForm>) {
-    console.log('service add task');
     return this.httpClient.post(
       SERVER_ADDRESS + '/tasks/add',
       {

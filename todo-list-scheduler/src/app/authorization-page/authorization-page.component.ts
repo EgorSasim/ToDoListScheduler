@@ -28,7 +28,6 @@ export class AuthorizationPageComponent {
   }
 
   public signIn() {
-    console.log('sign in');
     this.authenticationService.signIn(
       this.formGroup.get('login').value,
       this.formGroup.get('password').value

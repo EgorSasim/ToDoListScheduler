@@ -8,13 +8,12 @@ export class AuthenticationService {
   constructor(private httpClient: HttpClient, private router: Router) {}
 
   public signUp(login: string, password: string): void {
-    console.log('sign up from server');
     this.httpClient
       .post(SERVER_ADDRESS + '/user/registration', {
         data: { login: login, password: password },
       })
       .subscribe((data) => {
-        console.log('access Token: ', data['token']);
+        this.clearStorageToken();
         localStorage.setItem('accessToken', data['token']);
         this.router.navigate(['/with-nav-bar/tasks-page']);
       });
@@ -25,9 +24,13 @@ export class AuthenticationService {
         data: { login: login, password: password },
       })
       .subscribe((data) => {
+        this.clearStorageToken();
         localStorage.setItem('accessToken', data['token']);
-        console.log('access Token: ', data['token']);
         this.router.navigate(['/with-nav-bar/tasks-page']);
       });
+  }
+
+  private clearStorageToken(): void {
+    localStorage.removeItem('accessToken');
   }
 }
