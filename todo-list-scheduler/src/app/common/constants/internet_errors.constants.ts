@@ -1,1 +1,2 @@
-export const NO_INET_ACCESS = 'error occured, check internet connection';
+export const NO_INET_ACCESS =
+  'error occured, server not responding, please, check internet connection';
