@@ -6,7 +6,14 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
-import { BehaviorSubject, ReplaySubject, Subject, startWith } from 'rxjs';
+import {
+  BehaviorSubject,
+  ReplaySubject,
+  Subject,
+  catchError,
+  of,
+  startWith,
+} from 'rxjs';
 import { TaskService } from 'src/app/common/services/tasks.service';
 import { TaskForm } from 'src/app/tasks/task/task.typings';
 
@@ -31,8 +38,10 @@ export class TasksListComponent implements OnInit {
   }
 
   public getTasks(): void {
-    this.taskService.getTasks().subscribe((tasksList) => {
-      this.tasksList$.next(tasksList);
-    });
+    this.taskService
+      .getTasks()
+      .subscribe((tasksList: FormArray<FormGroup<TaskForm>>) => {
+        this.tasksList$.next(tasksList);
+      });
   }
 }

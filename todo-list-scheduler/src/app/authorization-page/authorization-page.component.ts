@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AuthorizationPageBuilder } from 'src/app/authorization-page/authorization-page.builder';
 import { AuthorizationForm } from 'src/app/authorization-page/authorization-page.typings';
@@ -11,7 +11,7 @@ import { AuthenticationService } from 'src/app/common/services/authentication.se
   providers: [AuthorizationPageBuilder, AuthenticationService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AuthorizationPageComponent {
+export class AuthorizationPageComponent implements OnInit {
   public formGroup: FormGroup<AuthorizationForm> =
     this.authorizationPageBuilder.createForm();
 
@@ -19,6 +19,10 @@ export class AuthorizationPageComponent {
     private authorizationPageBuilder: AuthorizationPageBuilder,
     private authenticationService: AuthenticationService
   ) {}
+
+  public ngOnInit(): void {
+    this.authenticationService.clearStorageToken();
+  }
 
   public signUp() {
     this.authenticationService.signUp(

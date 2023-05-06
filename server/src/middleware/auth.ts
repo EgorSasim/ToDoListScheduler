@@ -9,7 +9,12 @@ export function authMWare(req: Request, res: Response, next: NextFunction) {
 
   const accessToken = authHeader.split(' ')[1];
 
-  const userData = jwt.verify(accessToken, 'randomKey');
+  let userData;
+  try {
+    userData = jwt.verify(accessToken, 'randomKey');
+  } catch {
+    return res.status(401);
+  }
 
   req['user'] = userData;
   next();

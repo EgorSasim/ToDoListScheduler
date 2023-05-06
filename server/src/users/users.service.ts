@@ -12,7 +12,7 @@ export class UsersService {
   async registrate(login: string, password: string): Promise<string> {
     const isLoginExists = await this.userModel.findOne({ login: login });
     if (isLoginExists) {
-      return 'user already exists';
+      return '409'; //conflict code; cause user already exists;
     }
     const passwordHash = await bcrypt.hash(password, 3);
     const user = await this.userModel.create({
@@ -27,10 +27,15 @@ export class UsersService {
 
   async login(login: string, password: string): Promise<string> {
     const user = await this.userModel.findOne({ login: login });
+
+    if (!user) {
+      return '404'; //404 not found; if user with such name not found
+    }
+
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      return 'false';
+      return '401'; //410 unauthorized; invalid credentials, password;
     }
 
     const accessToken = jwt.sign({ id: user.id, login: login }, 'randomKey', {
