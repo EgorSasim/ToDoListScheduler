@@ -16,7 +16,6 @@ export class AuthenticationService {
       })
       .pipe(catchError(() => of(alert(NO_INET_ACCESS))))
       .subscribe((data) => {
-        console.log('data: ', data);
         if (data['token'] == '409') {
           alert('user with such name already exists!!!');
           return;
@@ -34,7 +33,6 @@ export class AuthenticationService {
       })
       .pipe(catchError(() => of(alert(NO_INET_ACCESS))))
       .subscribe((data) => {
-        console.log('data: ', data);
         this.clearStorageToken();
         if (data['token'] == '404') {
           alert('user not found!!!');
