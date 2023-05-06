@@ -40,10 +40,6 @@ export class NavBarComponent {
     }
   }
 
-  public showMenu(): void {
-    return;
-  }
-
   private setNavBarItemsToDefault(): void {
     this.tasksSrc = TASKS_BLACK_SRC;
     this.profileSrc = PROFILE_BLACK_SRC;
